@@ -5,11 +5,21 @@ window.onload = function() {
         // FAITE EN SORTE QUE AU CLICK SUR LES BUTTONS POSSEDANT LA CLASS 'square-button-empty'
             // DE MASQUER LE LOGIN FORM POUR AFFICHER LE REGISTER FORM, ET INVERSEMENT <->
 
+    const buttonEmpty = document.getElementsByClassName("square-button-empty");
+    const login = document.getElementById("connexion-form");
+    const register = document.getElementById("register-form");
 
-
-
-
-
+    for (let i = 0; i < buttonEmpty.length; i++) {
+        buttonEmpty[i].addEventListener("click", function(e){
+            if(e.target.getAttribute("data-form") == 0){
+                login.style.display = "none";
+                register.style.display = "flex";
+            } else {
+                login.style.display = "flex";
+                register.style.display = "none";
+            };
+        });   
+    };
 
 
     // --------------------- STEP 2 ----------------------
@@ -56,4 +66,4 @@ window.onload = function() {
             // 2. Si les données saisies correspondent a celles présentes dans le 'localStorage', rediriger l'utilisateur sur la page 'home.html'
 
 
-}
+    }

@@ -67,7 +67,7 @@ main > section {
   text-align: center;
 }
 
-.contact-form input:focus < .input-block {
+.contact-form input:focus .input-block {
   box-shadow: 2px 2px 5px black;
   outline: 0;
 }
