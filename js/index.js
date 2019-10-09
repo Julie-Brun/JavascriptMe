@@ -29,9 +29,55 @@ window.onload = function() {
             //  2. vérifier que le 'username' fait au moins 5 caracteres alphanumérique
             //  3. vérifier que le password fait au moins 8 caracteres et contient a minima une majuscule/minuscule ainsi qu'un entier (integer)
 
+    const loginButton = document.getElementById("loginButton");
+    const loginInput = document.getElementById("connexion-form").getElementsByTagName("input");
 
+    loginButton.addEventListener("click", function(){
+        const logUsername = loginInput[0].value;
+        console.log(logUsername);
+        const logEmail = loginInput[1].value;
+        console.log(logEmail);
+    });
+    
+    const registerButton = document.getElementById("registerButton");
+    const regInput = document.getElementById("register-form").getElementsByTagName("input");
 
+    registerButton.addEventListener("click", function(){
+        const regUsername = regInput[0].value;
+        console.log(regUsername);
+        const regEmail = regInput[1].value;
+        console.log(regEmail);
+        const regPassword = regInput[2].value;
+        console.log(regPassword);
+        const regPasswordConfirm = regInput[3].value;
+        console.log(regPasswordConfirm);
 
+        const verifyAlpha = /^[a-z0-9]+$/i;
+        if(regUsername.length < 5 || verifyAlpha.test(regUsername) == false){
+            alert("Your username must be at least 5 alphanumeric characters.");
+            return false;
+        }
+
+        const verifyLower = /^(?=.*[a-z])/;
+        const verifyUpper = /^(?=.*[A-Z])/;
+        const verifyInteger = /^[-+]?\d+$/;
+        if(regPassword.length < 8){
+            alert("Your password must be at least 8 characters.");
+            return false;
+        };
+        if(verifyLower.test(regPassword) == false){
+            alert("Your password must contain at least one lowercase.");
+            return false;
+        }
+        if(verifyUpper.test(regPassword) == false){
+            alert("Your password must contain at least one uppercase.");
+            return false;
+        }
+        if(verifyInteger.test(regPassword) == false){
+            alert("Your password must contain at least one number integer.");
+            return false;
+        }
+    });   
 
 
     // --------------------- STEP 3 -------------------------
