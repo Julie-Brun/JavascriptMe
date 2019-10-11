@@ -1,3 +1,64 @@
+class Article {
+    constructor (id, title, author, publishedDate, img, content, resumes) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publishedDate = publishedDate;
+        this.img = img;
+        this.content = content;
+        this.resumes = resumes;
+    }
+
+    getId() {
+        return this.id;
+    }
+    setId (newId) {
+        this.id = newId;
+    }
+
+    getTitle() {
+        return this.title;
+    }
+    setTitle (newTitle) { 
+        this.title = newTitle;
+    }
+
+    getAuthor() {
+        return this.author;
+    }
+    setAuthor (newAuthor) { 
+        this.author = newAuthor;
+    }
+
+    getPublishedDate() {
+        return this.publishedDate;
+    }
+    setPublishedDate (newPublishedDate) { 
+        this.publishedDate = newPublishedDate;
+    }
+
+    getImg() {
+        return this.img;
+    }
+    setImg (newImg) { 
+        this.img = newImg;
+    }
+
+    getContent() {
+        return this.content;
+    }
+    setContent (newContent) { 
+        this.content = newContent;
+    }
+
+    getResumes() {
+        return this.resumes;
+    }
+    setResumes (newResumes) { 
+        this.resumes = newResumes;
+    }
+}
+
 window.onload = function() {
     readFile('data/articles.json', function(articles) {
         console.log(articles);
@@ -10,25 +71,16 @@ window.onload = function() {
             // cette variable est un 'array' contenant une plusieurs objet correspondant chacun a un article
 
 
-
-
-
-
-
-
         // --------------------- STEP 1 ---------------------
             // 1. FAITE EN SORTE DE POUVOIR INSTANCIER UN OBJET 'Article' A PARTIR DES DONNEES DE LA VARIABLE 'articles'
                 // exemple : var article = new Article(articles.title, articles.author, articles.publishedDate, articles.img, articles.content, articles.resumes);
 
             // 1.2 DEFINIR DES GETTER/SETTER POUR CHAQUE PROPRIETES DE LA CLASS Article
                 // exemple : this.SetTitle = function(newTitle) { this.title = newTitle; } <----- ceci est un SETTER
-
-
-
-
-
-
-
+        
+        for (let i = 0; i < articles.length; i++) {
+            const article = new Article (articles[i].id, articles[i].title, articles[i].author, articles[i].publishedDate, articles[i].img, articles[i].content, articles[i].resumes);
+            console.log(article);
 
         // ------------------- STEP 2 ---------------------
             // AFFICHER DANS LA SECTION DU MAIN DE LA PAGE 'home.html' QUI EST LINK A CE SCRIPT LES ARTICLES
@@ -58,9 +110,7 @@ window.onload = function() {
                      // articleBloc.append(articleTitle);
                      // etc.....
 
-
-
-
+                     
 
         // ------------------ STEP 3 -----------------------
             // AU CLICK SUR LA PREVIEW D'UN ARTICLE (l'elements html) REDIRIGER VERS LA PAGE 'article.html' --->
