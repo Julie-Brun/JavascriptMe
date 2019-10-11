@@ -60,7 +60,7 @@ window.onload = function() {
 
         const verifyLower = /^(?=.*[a-z])/;
         const verifyUpper = /^(?=.*[A-Z])/;
-        const verifyInteger = /^[-+]?\d+$/;
+        const verifyInteger = /^(?=.*[0-9])/;
         if(regPassword.length < 8){
             alert("Your password must be at least 8 characters.");
             return false;
@@ -74,10 +74,10 @@ window.onload = function() {
             return false;
         }
         if(verifyInteger.test(regPassword) == false){
-            alert("Your password must contain at least one number integer.");
+            alert("Your password must contain at least one integer number.");
             return false;
         }
-    });   
+  
 
 
     // --------------------- STEP 3 -------------------------
@@ -96,6 +96,14 @@ window.onload = function() {
             // --> on utilise les données saisie du formulaire d'inscription pour setup les propriétés notre nouvelle 'User'
             // puis on stocke ce nouvelle objet utilisateurs dans le 'localStorage' sous la clé 'user'
 
+
+    // var user = new User('Toto', 'toto@email.fr', 'tamereenslip');
+    // console.log('Bonjour ' + user.getUsername() + ' !');
+
+        const user = new User(regUsername, regEmail, regPassword);
+        console.log('Bonjour ' + user.getUsername() + ' !');
+        localStorage.setItem("user", JSON.stringify(user));
+    }); 
 
 
 
