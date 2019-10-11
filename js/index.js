@@ -29,15 +29,7 @@ window.onload = function() {
             //  2. vérifier que le 'username' fait au moins 5 caracteres alphanumérique
             //  3. vérifier que le password fait au moins 8 caracteres et contient a minima une majuscule/minuscule ainsi qu'un entier (integer)
 
-    const loginButton = document.getElementById("loginButton");
-    const loginInput = document.getElementById("connexion-form").getElementsByTagName("input");
-
-    loginButton.addEventListener("click", function(){
-        const logUsername = loginInput[0].value;
-        console.log(logUsername);
-        const logEmail = loginInput[1].value;
-        console.log(logEmail);
-    });
+    // LOGIN dans la Step 4
     
     const registerButton = document.getElementById("registerButton");
     const regInput = document.getElementById("register-form").getElementsByTagName("input");
@@ -100,13 +92,10 @@ window.onload = function() {
     // var user = new User('Toto', 'toto@email.fr', 'tamereenslip');
     // console.log('Bonjour ' + user.getUsername() + ' !');
 
-        const user = new User(regUsername, regEmail, regPassword);
-        console.log('Bonjour ' + user.getUsername() + ' !');
-        localStorage.setItem("user", JSON.stringify(user));
+        const userReg = new User(regUsername, regEmail, regPassword);
+        console.log('Bonjour ' + userReg.getUsername() + ' !');
+        localStorage.setItem("user", JSON.stringify(userReg));
     }); 
-
-
-
 
     // --------------------- STEP 4 -------------------------
         // une fois nos saisies utilisateurs stocker dans des variables faite en sorte de :
@@ -119,5 +108,31 @@ window.onload = function() {
 
             // 2. Si les données saisies correspondent a celles présentes dans le 'localStorage', rediriger l'utilisateur sur la page 'home.html'
 
+    const loginButton = document.getElementById("loginButton");
+    const loginInput = document.getElementById("connexion-form").getElementsByTagName("input");
+        
+    loginButton.addEventListener("click", function(){
+        const logEmail = loginInput[0].value;
+        console.log(logEmail);
+        const logPassword = loginInput[1].value;
+        console.log(logPassword);
 
-    }
+        const userLog = JSON.parse(localStorage.getItem("user"));
+        console.log(userLog);
+        if(userLog === null){
+            alert("Account does not exist, please register.");
+            return false;
+        } else {
+            if(logEmail !== userLog.email){
+                alert("Wrong email.")
+                return false;
+            } else if(logPassword !== userLog.password){
+                alert("Wrong password.")
+                return false;
+            } else {
+                window.location.replace("home.html");
+            }
+        }
+    });
+
+}
