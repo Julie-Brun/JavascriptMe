@@ -110,7 +110,45 @@ window.onload = function() {
                      // articleBloc.append(articleTitle);
                      // etc.....
 
-                     
+            const section = document.getElementsByTagName("section")[0];
+            const articleBloc = document.createElement("article");
+            articleBloc.classList.add("article-preview");
+            articleBloc.setAttribute("data-id", article.getId());
+            section.appendChild(articleBloc);
+
+            const articleTitle = document.createElement("h2");
+            articleTitle.innerText = article.getTitle();
+            articleBloc.appendChild(articleTitle);
+
+            const articleBody = document.createElement("div");
+            articleBody.classList.add("article-preview-body");
+            articleBloc.appendChild(articleBody);
+
+            const articleImg = document.createElement("div");
+            articleImg.classList.add("article-preview-img");
+            articleBody.appendChild(articleImg);
+
+            const img = document.createElement("img");
+            img.setAttribute("alt", "miniature article " + article.getId());
+            img.setAttribute("src", article.getImg());
+            articleImg.appendChild(img);
+
+            const articleContent = document.createElement("div");
+            articleContent.classList.add("article-preview-content");
+            articleBody.appendChild(articleContent);
+
+            const content = document.createElement("p");
+            content.innerText = article.getResumes();
+            articleContent.appendChild(content);
+
+            const articleTags = document.createElement("div");
+            articleTags.classList.add("article-preview-tags");
+            articleBody.appendChild(articleTags);
+
+            const tags = document.createElement("p");
+            tags.innerText = "tag1 tag2 tagada";
+            articleTags.appendChild(tags);
+        }
 
         // ------------------ STEP 3 -----------------------
             // AU CLICK SUR LA PREVIEW D'UN ARTICLE (l'elements html) REDIRIGER VERS LA PAGE 'article.html' --->
