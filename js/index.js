@@ -130,7 +130,7 @@ window.onload = function() {
                 alert("Wrong password.")
                 return false;
             } else {
-                return ( window.location = "home.html");
+                window.location.replace("home.html");
             }
         }
     });

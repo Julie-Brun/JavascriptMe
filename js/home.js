@@ -80,7 +80,6 @@ window.onload = function() {
         
         for (let i = 0; i < articles.length; i++) {
             const article = new Article (articles[i].id, articles[i].title, articles[i].author, articles[i].publishedDate, articles[i].img, articles[i].content, articles[i].resumes);
-            console.log(article);
 
         // ------------------- STEP 2 ---------------------
             // AFFICHER DANS LA SECTION DU MAIN DE LA PAGE 'home.html' QUI EST LINK A CE SCRIPT LES ARTICLES
@@ -148,17 +147,18 @@ window.onload = function() {
             const tags = document.createElement("p");
             tags.innerText = "tag1 tag2 tagada";
             articleTags.appendChild(tags);
-        }
+        
 
         // ------------------ STEP 3 -----------------------
             // AU CLICK SUR LA PREVIEW D'UN ARTICLE (l'elements html) REDIRIGER VERS LA PAGE 'article.html' --->
                 // L'url devras ressembler à celle ci (le chemin d'accès vers le fichier + un parametre de type GET) :
                     // 'file:///C:/Users/brian/Desktop/JavascriptMe/article.html?id=1' <----
                         // --- La valeur du parametre id présent dans l'url doit correspondre a l'article clicker
+        
+            articleBloc.addEventListener("click", function(){
+                 window.location.href = "article.html?id=" + article.getId();
+            })
 
-
-
-
-
+        }
     });
 }
