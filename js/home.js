@@ -1,64 +1,3 @@
-class Article {
-    constructor (id, title, author, publishedDate, img, content, resumes) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.publishedDate = publishedDate;
-        this.img = img;
-        this.content = content;
-        this.resumes = resumes;
-    }
-
-    getId() {
-        return this.id;
-    }
-    setId (newId) {
-        this.id = newId;
-    }
-
-    getTitle() {
-        return this.title;
-    }
-    setTitle (newTitle) { 
-        this.title = newTitle;
-    }
-
-    getAuthor() {
-        return this.author;
-    }
-    setAuthor (newAuthor) { 
-        this.author = newAuthor;
-    }
-
-    getPublishedDate() {
-        return this.publishedDate;
-    }
-    setPublishedDate (newPublishedDate) { 
-        this.publishedDate = newPublishedDate;
-    }
-
-    getImg() {
-        return this.img;
-    }
-    setImg (newImg) { 
-        this.img = newImg;
-    }
-
-    getContent() {
-        return this.content;
-    }
-    setContent (newContent) { 
-        this.content = newContent;
-    }
-
-    getResumes() {
-        return this.resumes;
-    }
-    setResumes (newResumes) { 
-        this.resumes = newResumes;
-    }
-}
-
 window.onload = function() {
     readFile('data/articles.json', function(articles) {
         console.log(articles);
@@ -79,7 +18,7 @@ window.onload = function() {
                 // exemple : this.SetTitle = function(newTitle) { this.title = newTitle; } <----- ceci est un SETTER
         
         for (let i = 0; i < articles.length; i++) {
-            const article = new Article (articles[i].id, articles[i].title, articles[i].author, articles[i].publishedDate, articles[i].img, articles[i].content, articles[i].resumes);
+            const article = new Article (articles[i].id, articles[i].title, articles[i].author, articles[i].publishedDate, articles[i].img, articles[i].content, articles[i].resumes, articles[i].tags);
 
         // ------------------- STEP 2 ---------------------
             // AFFICHER DANS LA SECTION DU MAIN DE LA PAGE 'home.html' QUI EST LINK A CE SCRIPT LES ARTICLES
@@ -111,42 +50,32 @@ window.onload = function() {
 
             const section = document.getElementsByTagName("section")[0];
             const articleBloc = document.createElement("article");
-            articleBloc.classList.add("article-preview");
-            articleBloc.setAttribute("data-id", article.getId());
-            section.appendChild(articleBloc);
-
             const articleTitle = document.createElement("h2");
-            articleTitle.innerText = article.getTitle();
-            articleBloc.appendChild(articleTitle);
-
             const articleBody = document.createElement("div");
-            articleBody.classList.add("article-preview-body");
-            articleBloc.appendChild(articleBody);
-
             const articleImg = document.createElement("div");
-            articleImg.classList.add("article-preview-img");
-            articleBody.appendChild(articleImg);
-
             const img = document.createElement("img");
-            img.setAttribute("alt", "miniature article " + article.getId());
-            img.setAttribute("src", article.getImg());
-            articleImg.appendChild(img);
-
             const articleContent = document.createElement("div");
-            articleContent.classList.add("article-preview-content");
-            articleBody.appendChild(articleContent);
-
             const content = document.createElement("p");
-            content.innerText = article.getResumes();
-            articleContent.appendChild(content);
-
             const articleTags = document.createElement("div");
-            articleTags.classList.add("article-preview-tags");
-            articleBody.appendChild(articleTags);
-
             const tags = document.createElement("p");
-            tags.innerText = "tag1 tag2 tagada";
-            articleTags.appendChild(tags);
+                
+            bloc(section, articleBloc, article.getId());
+
+            title(articleBloc, articleTitle, article.getTitle());
+
+            body(articleBloc, articleBody);
+                
+            image(articleBody, articleImg);
+
+            setImg(articleImg, img, article.getId(), article.getImg());
+
+            cont(articleBody, articleContent);
+
+            setContent(articleContent, content, article.getResumes());
+
+            tag(articleBody, articleTags);
+
+            setTags(articleTags, tags, article.getTags());
         
 
         // ------------------ STEP 3 -----------------------
@@ -157,8 +86,21 @@ window.onload = function() {
         
             articleBloc.addEventListener("click", function(){
                  window.location.href = "article.html?id=" + article.getId();
-            })
+            }) 
 
+            // Cette méthode semble fonctionnée aussi mais je ne la comprend pas et ne préfère donc pas l'utiliser ...
+            
+            // articleBloc.addEventListener("click", function(){
+            //     const Http = new XMLHttpRequest();
+            //     const url = "article.html?id=" + article.getId();
+            //     Http.open("GET", url);
+            //     Http.send();
+        
+            //     Http.onreadystatechange = (e) => {
+            //         console.log(Http.responseText)
+            //         window.location.href = url;
+            //     }
+            // })
         }
     });
 }
