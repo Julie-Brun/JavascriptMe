@@ -1,4 +1,6 @@
 window.onload = function() {
+    readFile('data/articles.json', function(articles) {
+        console.log(articles);
 
     // VOUS Y ETES PRESQUE !!!
 
@@ -14,6 +16,46 @@ window.onload = function() {
         // BIEN SUR QUE NON !
         // Il serait donc peut-etre jusdicieux d'organiser notre code en utilisant des fonctions dynamique réutilisable ;-)
 
+        let params = (new URL(document.location)).searchParams;
+        let id = params.get("id");
+        console.log(id);
 
+        for (let i = 0; i < articles.length; i++) {
+            var article = new Article (articles[i].id, articles[i].title, articles[i].author, articles[i].publishedDate, articles[i].img, articles[i].content, articles[i].resumes, articles[i].tags);
+
+            if(id == article.id){
+                const section = document.getElementsByTagName("section")[0];
+                const articleBloc = document.createElement("article");
+                const articleTitle = document.createElement("h2");
+                const articleBody = document.createElement("div");
+                const articleImg = document.createElement("div");
+                const img = document.createElement("img");
+                const articleContent = document.createElement("div");
+                const content = document.createElement("p");
+                const articleTags = document.createElement("div");
+                const tags = document.createElement("p");
+                
+                bloc(section, articleBloc, article.getId());
+
+                title(articleBloc, articleTitle, article.getTitle());
+
+                body(articleBloc, articleBody);
+                
+                image(articleBody, articleImg);
+
+                setImg(articleImg, img, article.getId(), article.getImg());
+
+                cont(articleBody, articleContent);
+
+                setContent(articleContent, content, article.getContent());
+
+                tag(articleBody, articleTags);
+
+                setTags(articleTags, tags, article.getTags());
+
+            }
+        }
+    
+    });
 
 }

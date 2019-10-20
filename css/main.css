@@ -1,38 +1,38 @@
 body {
-    padding: 0;
-    margin: 0;
-    font-family: fantasy Times;
+  padding: 0;
+  margin: 0;
+  font-family: fantasy Times;
 }
 
 main {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: center;
-    width: 100%;
-    min-height: 100vh;
-    background: #9C517E;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  background: #9C517E;
 }
 
 main > header {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 main > header > h1 {
-    color: #EDA1A5;
-    font-weight: bold;
-    background: rgba(255, 255, 255, 0.2);
-    width: 100%;
+  color: #EDA1A5;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.2);
+  width: 100%;
 }
 
 main > section {
-    width: 80%;
-    display: flex;
-    justify-content: center;
+  width: 80%;
+  display: flex;
+  justify-content: center;
 }
 
 .contact-form {
@@ -47,7 +47,7 @@ main > section {
 }
 
 .contact-form .form-block {
-    padding: 15px;
+  padding: 15px;
 }
 .contact-form .input-block {
   background-color: rgba(255, 255, 255, 0.8);
@@ -67,7 +67,7 @@ main > section {
   text-align: center;
 }
 
-.contact-form input:focus < .input-block {
+.contact-form input:focus .input-block {
   box-shadow: 2px 2px 5px black;
   outline: 0;
 }
@@ -104,7 +104,7 @@ main > section {
 }
 
 .form-block-switch {
-    color: white;
+  color: white;
 }
 
 .contact-form .square-button-empty {
@@ -128,5 +128,14 @@ main > section {
 }
 
 #register-form {
-    display: none;
+  display: none;
+}
+
+main section .article-preview {
+  border: 2px solid black;
+  width: 80%;
+}
+
+main section .article-preview .article-preview-img img {
+  width: 70%;
 }
